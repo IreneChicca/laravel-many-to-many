@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Technology;
+
+use Faker\Generator as Faker;
 
 class TechnologySeeder extends Seeder
 {
@@ -12,8 +15,16 @@ class TechnologySeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
-    }
-}
+        $_technologies = ['html','css','bootstrap','sass','js','php','laravel','vite','vue','json'] ;
+
+        foreach ($_technologies as $_technology) {
+
+            $technology = new Technology();
+            $technology->label = $_technology;
+            $technology->color = $faker->hexColor();
+            $technology->save();
+
+    };
+}}
