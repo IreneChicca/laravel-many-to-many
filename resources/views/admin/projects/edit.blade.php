@@ -73,6 +73,35 @@
     </div>
 </div>
 
+<div class="col-12 my-5">
+
+          
+    <p>Tecnologie</p>
+      <div class="form-control form-check w-75 m-auto @error('technologies') is-invalid @enderror">
+        
+    <input type="checkbox" name="technologies[]" id="non-valido" value="-50" class="form-check-control">
+    <label for="non-valido" class="me-3">XXX</label>
+        @foreach ($technologies as $technology)
+          
+            <input type="checkbox" name="technologies[]" id="technology-{{$technology->id }}" value="{{ $technology->id }}" class="form-check-control" 
+            @if (in_array($technology->id, old('technologies', $tech_ids))) checked @endif>               
+           <label for="technology-{{$technology->id }}" class="me-3">{{ $technology->label }}</label>
+      
+        @endforeach
+        
+
+      </div>
+      @error('technologies')
+      <div class="invalid-feedback">
+      {{ $message }}
+    </div>
+  @enderror
+
+  </div>
+
+
+
+
 <button class="btn btn-dark">Salva</button>
 
 </form>

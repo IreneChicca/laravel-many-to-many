@@ -30,7 +30,7 @@ class StoreProjectRequest extends FormRequest
             'commit'=> ['required','integer'],
             'bonus'=> ['string'],
             'type_id'=> ['nullable','string', 'exists:types,id'],
-            'technologies'=>['exists:technologies,id', 'string','min:1'],
+            'technologies'=>['exists:technologies,id'],
         ];
     }
 
@@ -54,7 +54,7 @@ class StoreProjectRequest extends FormRequest
             'type_id.exists' => 'La categoria non è valida',
 
             'technologies.exists' => 'Non valido',
-            'technologies.min' => 'Selezion almeno una tecnologia',
+            
         ];
 
     }
