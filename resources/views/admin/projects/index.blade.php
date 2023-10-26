@@ -18,12 +18,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <div class="container border rounded my-5">
 
+ 
+
  <table class="table">
             <thead>
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Titolo</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Tecnologie</th>
                 <th scope="col">Data</th>
                 <th scope="col">Linguaggio</th>
                 <th scope="col">Commit</th>
@@ -34,13 +37,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @forelse ($projects as $project)
         
-    
-       
+         
             <tbody>
               <tr>
                 <th scope="row">{{$project->id}}</th>
                 <td>{{$project->title}}</td>
                 <td>{{$project->type->label}}</td>
+                <td>{!! $project->getTechBadges()  !!}</td>
                 <td>{{$project->date}}</td>
                 <td>{{$project->main_lang}}</td>
                 <td>{{$project->commit}}</td>
