@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Models\Type;
+use App\Models\Technology;
+
 
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     ** @return \Illuminate\Http\Response
+     * 
      */
     public function index()
     {
@@ -25,12 +28,14 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     ** @return \Illuminate\Http\Response
      */
     public function create()
     {
         $types= Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+
+        return view('admin.projects.create', compact('types','technologies'));
     }
 
     /**
@@ -47,14 +52,16 @@ class ProjectController extends Controller
         $project->fill($data);
         $project->save();
 
+        $project->technologies()->attach(1);
+
         return redirect()->route('admin.projects.show', $project);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     ** @param  int  $id
+     ** @return \Illuminate\Http\Response
      */
     public function show(Project $project)
     {
@@ -65,7 +72,7 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     ** @return \Illuminate\Http\Response
      */
     public function edit(Project $project)
     {

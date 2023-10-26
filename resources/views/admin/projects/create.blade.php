@@ -103,6 +103,25 @@
             </div>
         </div>
 
+        <div class="col-12 my-5">
+
+          
+          <p>Tecnologie</p>
+            
+
+              @foreach ($technologies as $technology)
+                
+                  <input type="checkbox" name="technologies[]" id="technology-{{$technology->id }}" value="{{ $technology->id }}" class="form-check-control">
+                 <label for="technology-{{$technology->id }}" class="me-3">{{ $technology->label }}</label>
+            
+              @endforeach
+              
+
+            
+
+        </div>
+
+
         <button class="btn btn-dark">Salva</button>
 
         </form>
