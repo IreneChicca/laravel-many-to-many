@@ -42,7 +42,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
               <tr>
                 <th scope="row">{{$project->id}}</th>
                 <td>{{$project->title}}</td>
-                <td>{{$project->type->label}}</td>
                 <td><span class='badge mx-1' style='background-color:{{$project->type->color}}'>{{$project->type->label}}</span></td>
                 <td>{!! $project->getTechBadges()  !!}</td>
                 <td>{{$project->date}}</td>
