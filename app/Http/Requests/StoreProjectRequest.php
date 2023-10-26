@@ -30,6 +30,7 @@ class StoreProjectRequest extends FormRequest
             'commit'=> ['required','integer'],
             'bonus'=> ['string'],
             'type_id'=> ['nullable','string', 'exists:types,id'],
+            'technologies'=>['nullable','exists:technologies,id'],
         ];
     }
 
@@ -51,6 +52,8 @@ class StoreProjectRequest extends FormRequest
             'bonus.string'=> 'Il titolo deve essere una stringa',
 
             'type_id.exists' => 'La categoria non è valida',
+
+            'technologies.exists' => 'Non valido',
 
         ];
 
