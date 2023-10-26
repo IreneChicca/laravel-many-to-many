@@ -26,11 +26,11 @@ class StoreProjectRequest extends FormRequest
         return [
             'title'=> ['required','string'],
             'date'=> ['required'],
-            'main_lang'=> ['required'],
+            'main_lang'=> ['required','string','min:1'],
             'commit'=> ['required','integer'],
             'bonus'=> ['string'],
             'type_id'=> ['nullable','string', 'exists:types,id'],
-            'technologies'=>['nullable','exists:technologies,id'],
+            'technologies'=>['exists:technologies,id', 'string','min:1'],
         ];
     }
 
@@ -54,7 +54,7 @@ class StoreProjectRequest extends FormRequest
             'type_id.exists' => 'La categoria non è valida',
 
             'technologies.exists' => 'Non valido',
-
+            'technologies.min' => 'Selezion almeno una tecnologia',
         ];
 
     }
