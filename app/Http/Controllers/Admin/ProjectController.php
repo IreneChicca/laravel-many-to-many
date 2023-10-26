@@ -8,7 +8,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Models\Type;
 use App\Models\Technology;
 
-
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -53,7 +53,8 @@ class ProjectController extends Controller
         $project->fill($data);
         $project->save();
 
-        $project->technologies()->attach($data['technologies']);
+        if(Arr::exists($data, 'technologies')) {
+        $project->technologies()->attach($data['technologies']);}
 
         return redirect()->route('admin.projects.show', $project);
     }
@@ -96,6 +97,11 @@ class ProjectController extends Controller
         $data = $request->all();
         $project->update($data);
 
+        if(Arr::exists($data, "technologies"))
+        $project->technologies()->sync($data["technologies"]);
+        else
+        $project->technologies()->detach();
+    
         return redirect()->route('admin.projects.show', $project);
     }
 
