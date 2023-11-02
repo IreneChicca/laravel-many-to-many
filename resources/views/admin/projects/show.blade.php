@@ -11,6 +11,11 @@
 
     <div class="row my-5">
 
+        <div class="col-3">
+            <img src="{{ asset('/storage/' . $project->img)}}" alt="" class="w-25">
+
+
+        </div>
         <p><strong>ID: </strong>{{$project->id}}</p>
         <p><strong>Tipo: </strong>{{$project->type->label}}</p>
         <p><strong>Data: </strong>{{$project->date}}</p>

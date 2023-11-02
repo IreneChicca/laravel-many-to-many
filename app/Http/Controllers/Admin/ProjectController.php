@@ -54,10 +54,10 @@ class ProjectController extends Controller
         $project = new Project();
         $project->fill($data);
 
-       
+        if(Arr::exists($data, 'img')) {
         $img_path = Storage::put("uploads/projects/img",$data['img']);
         $project->img= $img_path;
-
+        };
 
         $project->save();
 
@@ -122,6 +122,12 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->technologies()->detach();
+
+        if($project->img){
+            Storage::delete($project->img);
+
+        }
+
         $project->delete();
         return redirect()->route('admin.projects.index');
     }
