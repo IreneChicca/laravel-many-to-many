@@ -8,8 +8,10 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Models\Type;
 use App\Models\Technology;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+
 
 class ProjectController extends Controller
 {
@@ -41,8 +43,8 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     ** @param  \Illuminate\Http\Request  $request
+     ** @return \Illuminate\Http\Response
      */
     public function store(StoreProjectRequest $request)
     {
@@ -51,6 +53,12 @@ class ProjectController extends Controller
 
         $project = new Project();
         $project->fill($data);
+
+       
+        $img_path = Storage::put("uploads/projects/img",$data['img']);
+        $project->img= $img_path;
+
+
         $project->save();
 
         if(Arr::exists($data, 'technologies')) {

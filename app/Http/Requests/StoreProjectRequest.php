@@ -27,6 +27,7 @@ class StoreProjectRequest extends FormRequest
             'title'=> ['required','string'],
             'date'=> ['required'],
             'main_lang'=> ['required','string','min:1'],
+            'img'=> ['nullable','image'],
             'commit'=> ['required','integer'],
             'bonus'=> ['string'],
             'type_id'=> ['nullable','string', 'exists:types,id'],
@@ -45,6 +46,8 @@ class StoreProjectRequest extends FormRequest
             'date.required'=> 'La data è obbligatorio',
 
             'main_lang.required'=> 'Il linguaggio principale è obbligatorio',
+
+            'img.image'=> 'Il file deve essere un\'immagine',
 
             'commit.required'=> 'Il numero di commit è obbligatorio',
             'commit.integer'=> 'Il numero di commit deve essere un numero',
