@@ -10,7 +10,7 @@
 
         <h1>Stai modificando il progetto: {{$project->title}}</h1>
 
-<form action="{{ route('admin.projects.update' , $project)}}" method="POST">
+<form action="{{ route('admin.projects.update' , $project)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -62,6 +62,23 @@
        
     </div>
 </div>
+
+
+
+        {{-- cover img  --}}
+        <div class="row justify-content-center my-5">
+            <div class="col-6">
+              <label for="img">Immagine</label>
+              <input type="file" id="img" name="img" class="form-control @error('img') is-invalid @enderror" value="{{ old('img')}}" >
+              @error('img')
+              <div class="invalid-feedback">
+              {{ $message }}
+            </div>
+          @enderror
+          </div>
+    
+        </div>
+
 <div class="row justify-content-center my-5">
     <div class="col-2">
         <label for="commit">Numero di commit</label>
