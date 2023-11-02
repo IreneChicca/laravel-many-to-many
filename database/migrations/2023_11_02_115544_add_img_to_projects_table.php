@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('img')->nullable();
+            $table->string('img')->nullable()->after('commit');
         });
     }
 
